@@ -15,26 +15,38 @@ describe Game do
   end
 
   describe '#update_board' do
+    context 'move #1' do
+      before do
+        game.update_board([0,2])
+      end
 
-    before do
-      game.update_board([0,2])
+      it 'updates the board with the players move' do
+        expect(game.board.state).to eq [[0,0,1],[0,0,0],[0,0,0]]
+      end
+
+      it 'doesnt update if square is already taken' do
+        expect{ game.update_board([0,2]) }.to raise_error 'Square already taken'
+      end
+
+      it 'switches the player number at the end of a move' do
+        expect(game.player).to eq 2
+      end
     end
 
-    it 'updates the board with the players move' do
-      expect(game.board.state).to eq [[0,0,1],[0,0,0],[0,0,0]]
-    end
+    context 'move #2' do
+      before do
+        game.update_board([0,2])
+        game.update_board([0,1])
+      end
 
-    it 'doesnt update if square is already taken' do
-      expect{ game.update_board([0,2]) }.to raise_error 'Square already taken'
-    end
+      it 'switches the back to the first player after 2 moves' do
+        expect(game.player).to eq 1
+      end
 
-    it 'switches the player number at the end of a move' do
-      expect(game.player).to eq 2
-    end
+      it 'updates the board with a 2 when player is 2' do
+        expect(game.board.state).to eq [[0,2,1],[0,0,0],[0,0,0]]
+      end
 
-    it 'switches the back to the first player after 2 moves' do
-      game.update_board([1,2])
-      expect(game.player).to eq 1
     end
 
 
