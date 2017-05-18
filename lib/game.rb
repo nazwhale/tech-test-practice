@@ -13,6 +13,7 @@ class Game
   def update_board(move)
     horizontal_choice = move[0]
     vertical_choice = move[1]
+    # fail 'Square not on board' unless horizontal_choice == (1 || 2 || 3)
     fail 'Square already taken' unless board.state[horizontal_choice][vertical_choice] == 0
     board.state[horizontal_choice][vertical_choice] = player
     switch_player

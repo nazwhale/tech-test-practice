@@ -28,6 +28,10 @@ describe Game do
         expect{ game.update_board([0,2]) }.to raise_error 'Square already taken'
       end
 
+      it 'doesnt update if square is not on the board' do
+        expect{ game.update_board([0,3]) }.to raise_error 'Square not on board'
+      end
+
       it 'switches the player number at the end of a move' do
         expect(game.player).to eq 2
       end
