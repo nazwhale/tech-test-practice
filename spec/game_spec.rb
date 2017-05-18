@@ -48,7 +48,7 @@ describe Game do
       end
     end
 
-    describe '#win' do
+    describe '#horizontal_win' do
 
       context 'false' do
         before do
@@ -58,38 +58,38 @@ describe Game do
 
         it 'when horizontal row is filled with 1s and 2s' do
           game.update_board([0,0])
-          expect(game.win?).to be_falsy
+          expect(game.horizontal_win?).to be_falsy
         end
       end
 
       context 'true' do
 
-        it 'p1 top row win' do
+        it 'p1 top row horizontal_win' do
           game.update_board([0,2])
           game.update_board([1,2])
           game.update_board([0,1])
           game.update_board([1,1])
           game.update_board([0,0])
-          expect(game.win?).to be_truthy
+          expect(game.horizontal_win?).to be_truthy
         end
 
-        it 'p2 middle row win' do
+        it 'p2 middle row horizontal_win' do
           game.update_board([0,2])
           game.update_board([1,2])
           game.update_board([0,1])
           game.update_board([1,1])
           game.update_board([2,2])
           game.update_board([1,0])
-          expect(game.win?).to be_truthy
+          expect(game.horizontal_win?).to be_truthy
         end
 
-        it 'p1 bottom row win' do
+        it 'p1 bottom row horizontal_win' do
           game.update_board([2,2])
           game.update_board([1,2])
           game.update_board([2,1])
           game.update_board([1,1])
           game.update_board([2,0])
-          expect(game.win?).to be_truthy
+          expect(game.horizontal_win?).to be_truthy
         end
       end
     end

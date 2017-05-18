@@ -22,10 +22,16 @@ class Game
     player == 1 ? self.player = 2 : self.player = 1
   end
 
-  def win?
-    return true if board.state[0][0] == board.state[0][1] && board.state[0][1] == board.state[0][2] && board.state[0][0] != 0
-    return true if board.state[1][0] == board.state[1][1] && board.state[1][1] == board.state[1][2] && board.state[1][0] != 0
-    return true if board.state[2][0] == board.state[2][1] && board.state[2][1] == board.state[2][2] && board.state[2][0] != 0
+  def horizontal_win?
+    row_1_win = board.state[0][0] == board.state[0][1] && board.state[0][1] == board.state[0][2]
+    row_2_win = board.state[1][0] == board.state[1][1] && board.state[1][1] == board.state[1][2]
+    row_3_win = board.state[2][0] == board.state[2][1] && board.state[2][1] == board.state[2][2]
+    rows = [row_1_win, row_2_win, row_3_win]
+    rows.each_with_index do |row, index|
+      row_not_empty = board.state[index][0] != 0
+      return true if row && row_not_empty
+    end
+    false
   end
 
   private
