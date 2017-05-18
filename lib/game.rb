@@ -34,6 +34,19 @@ class Game
     false
   end
 
+  def vertical_win?
+    column_1_win = board.state[0][0] == board.state[1][0] && board.state[1][0] == board.state[2][0]
+    column_2_win = board.state[0][1] == board.state[1][1] && board.state[1][1] == board.state[2][1]
+    column_3_win = board.state[0][2] == board.state[1][2] && board.state[1][2] == board.state[2][2]
+    columns = [column_1_win, column_2_win, column_3_win]
+
+    columns.each_with_index do |column, index|
+      column_not_empty = board.state[0][index] != 0
+      return true if column && column_not_empty
+    end
+    false
+  end
+
   private
 
   attr_writer :player

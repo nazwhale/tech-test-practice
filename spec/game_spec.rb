@@ -63,7 +63,6 @@ describe Game do
       end
 
       context 'true' do
-
         it 'p1 top row horizontal_win' do
           game.update_board([0,2])
           game.update_board([1,2])
@@ -90,6 +89,38 @@ describe Game do
           game.update_board([1,1])
           game.update_board([2,0])
           expect(game.horizontal_win?).to be_truthy
+        end
+      end
+    end
+
+    describe '#vertical_win' do
+
+      context 'true' do
+        it 'p1 left column vertical win' do
+          game.update_board([0,0])
+          game.update_board([1,1])
+          game.update_board([1,0])
+          game.update_board([1,2])
+          game.update_board([2,0])
+          expect(game.vertical_win?).to be_truthy
+        end
+
+        it 'middle column vertical win' do
+          game.update_board([0,1])
+          game.update_board([0,0])
+          game.update_board([1,1])
+          game.update_board([2,2])
+          game.update_board([2,1])
+          expect(game.vertical_win?).to be_truthy
+        end
+
+        it 'right column vertical win' do
+          game.update_board([0,2])
+          game.update_board([0,0])
+          game.update_board([1,2])
+          game.update_board([2,0])
+          game.update_board([2,2])
+          expect(game.vertical_win?).to be_truthy
         end
       end
     end
