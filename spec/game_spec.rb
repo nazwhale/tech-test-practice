@@ -20,5 +20,11 @@ describe Game do
       game.update_board(move)
       expect(game.board.state).to eq [[0,0,1],[0,0,0],[0,0,0]]
     end
+
+    it 'doesnt update if square is already taken' do
+      move = [0,2]
+      game.update_board(move)
+      expect{ game.update_board(move) }.to raise_error 'Square already taken'
+    end
   end
 end
