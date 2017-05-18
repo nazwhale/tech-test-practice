@@ -63,15 +63,32 @@ describe Game do
       end
 
       context 'true' do
-        before do
+
+        it 'p1 top row win' do
           game.update_board([0,2])
           game.update_board([1,2])
           game.update_board([0,1])
           game.update_board([1,1])
           game.update_board([0,0])
+          expect(game.win?).to be_truthy
         end
 
-        it 'when horizontal row is filled with 1s' do
+        it 'p2 middle row win' do
+          game.update_board([0,2])
+          game.update_board([1,2])
+          game.update_board([0,1])
+          game.update_board([1,1])
+          game.update_board([2,2])
+          game.update_board([1,0])
+          expect(game.win?).to be_truthy
+        end
+
+        it 'p1 bottom row win' do
+          game.update_board([2,2])
+          game.update_board([1,2])
+          game.update_board([2,1])
+          game.update_board([1,1])
+          game.update_board([2,0])
           expect(game.win?).to be_truthy
         end
       end

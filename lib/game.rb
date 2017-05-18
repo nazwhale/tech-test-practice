@@ -23,7 +23,9 @@ class Game
   end
 
   def win?
-    board.state[0][0] == board.state[0][1] && board.state[0][1] == board.state[0][2]
+    return true if board.state[0][0] == board.state[0][1] && board.state[0][1] == board.state[0][2] && board.state[0][0] != 0
+    return true if board.state[1][0] == board.state[1][1] && board.state[1][1] == board.state[1][2] && board.state[1][0] != 0
+    return true if board.state[2][0] == board.state[2][1] && board.state[2][1] == board.state[2][2] && board.state[2][0] != 0
   end
 
   private
