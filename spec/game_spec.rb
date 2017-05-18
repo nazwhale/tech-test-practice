@@ -46,7 +46,35 @@ describe Game do
       it 'updates the board with a 2 when player is 2' do
         expect(game.board.state).to eq [[0,2,1],[0,0,0],[0,0,0]]
       end
+    end
 
+    describe '#win' do
+
+      context 'false' do
+        before do
+          game.update_board([0,2])
+          game.update_board([0,1])
+        end
+
+        it 'when horizontal row is filled with 1s and 2s' do
+          game.update_board([0,0])
+          expect(game.win?).to be_falsy
+        end
+      end
+
+      context 'true' do
+        before do
+          game.update_board([0,2])
+          game.update_board([1,2])
+          game.update_board([0,1])
+          game.update_board([1,1])
+          game.update_board([0,0])
+        end
+
+        it 'when horizontal row is filled with 1s' do
+          expect(game.win?).to be_truthy
+        end
+      end
     end
 
 
