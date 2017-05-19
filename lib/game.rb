@@ -24,29 +24,29 @@ class Game
   end
 
   def horizontal_win?
-    row_1_win = board.state[0][0] == board.state[0][1] && board.state[0][1] == board.state[0][2]
-    row_2_win = board.state[1][0] == board.state[1][1] && board.state[1][1] == board.state[1][2]
-    row_3_win = board.state[2][0] == board.state[2][1] && board.state[2][1] == board.state[2][2]
-    rows = [row_1_win, row_2_win, row_3_win]
-    rows.each_with_index do |row, index|
-      row_not_empty = board.state[index][0] != 0
-      return true if row && row_not_empty
+    return true if board.state.any? do |row|
+      row.all? { |square| square == 1 } || row.all? { |square| square == 2 }
     end
-    false
   end
 
   def vertical_win?
-    column_1_win = board.state[0][0] == board.state[1][0] && board.state[1][0] == board.state[2][0]
-    column_2_win = board.state[0][1] == board.state[1][1] && board.state[1][1] == board.state[2][1]
-    column_3_win = board.state[0][2] == board.state[1][2] && board.state[1][2] == board.state[2][2]
-    columns = [column_1_win, column_2_win, column_3_win]
-
-    columns.each_with_index do |column, index|
-      column_not_empty = board.state[0][index] != 0
-      return true if column && column_not_empty
+    return true if board.state.any? do |column|
+      column.all? { |square| square == 1 } column.all? { |square| square == 2 }
     end
-    false
+
   end
+
+  # def vertical_win?
+  #   column_1_win = board.state[0][0] == board.state[1][0] && board.state[1][0] == board.state[2][0]
+  #   column_2_win = board.state[0][1] == board.state[1][1] && board.state[1][1] == board.state[2][1]
+  #   column_3_win = board.state[0][2] == board.state[1][2] && board.state[1][2] == board.state[2][2]
+  #   columns = [column_1_win, column_2_win, column_3_win]
+  #   columns.each_with_index do |column, index|
+  #     column_not_empty = board.state[0][index] != 0
+  #     return true if column && column_not_empty
+  #   end
+  #   false
+  # end
 
   private
 

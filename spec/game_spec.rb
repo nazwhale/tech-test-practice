@@ -62,6 +62,7 @@ describe Game do
 
         it 'when horizontal row is filled with 1s and 2s' do
           game.update_board([0,0])
+          p game.board.state
           expect(game.horizontal_win?).to be_falsy
         end
       end
